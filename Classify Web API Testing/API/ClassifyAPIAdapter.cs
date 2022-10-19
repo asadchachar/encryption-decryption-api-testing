@@ -33,8 +33,8 @@ namespace Classify_Web_API_Testing.API
         {
             EncryptionRequest Request = new EncryptionRequest() { data = Message, key = Key };
             //Call API
-            var result = await this.Client.PostAsync(BaseUrl + "/encrypt", new StringContent(JsonConvert.SerializeObject(Request)));
-            string res = await result.Content.ReadAsStringAsync();
+            var result = await this.Client.PostAsync(BaseUrl + "/encrypt", new StringContent(JsonConvert.SerializeObject(Request), Encoding.UTF8, "application/json"));
+            var res = await result.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Result>(res);
         }
 
@@ -43,18 +43,10 @@ namespace Classify_Web_API_Testing.API
         {
             EncryptionRequest Request = new EncryptionRequest() { data = Message, key = Key };
             //Call API
-            var result = await this.Client.PostAsync(BaseUrl + "/decrypt", new StringContent(JsonConvert.SerializeObject(Request)));
+            var result = await this.Client.PostAsync(BaseUrl + "/decrypt", new StringContent(JsonConvert.SerializeObject(Request), Encoding.UTF8, "application/json"));
             string res = await result.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Result>(res);
         }
 
-        //KeyGen
-        public async Task<Key> Generate(int length = 0, int IncludeSymbols = 0)
-        {
-            //Call API
-            var result = await this.Client.GetAsync(BaseUrl + "/keygen?length=" + length + "&symbols=" + IncludeSymbols);
-            string res = await result.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Key>(res);
-        }
     }
 }

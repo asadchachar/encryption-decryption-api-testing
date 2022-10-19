@@ -178,13 +178,145 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 18
- testRunner.When("I encrypt \"this is my message\" and key is \"ThisIsMyKey\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I encrypt this is my message and key is ThisIsMyKey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
  testRunner.Then("The message is encrypted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
  testRunner.And("Encrypted message is generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Verify that Decrypt functionality is working")]
+        [Xunit.TraitAttribute("FeatureTitle", "VerifyEncryption")]
+        [Xunit.TraitAttribute("Description", "Verify that Decrypt functionality is working")]
+        [Xunit.TraitAttribute("Category", "subSuite:keyGen")]
+        [Xunit.TraitAttribute("Category", "integration-tests")]
+        [Xunit.TraitAttribute("Category", "decrypt")]
+        public virtual void VerifyThatDecryptFunctionalityIsWorking()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "subSuite:keyGen",
+                    "integration-tests",
+                    "decrypt"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that Decrypt functionality is working", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 24
+ testRunner.And("I encrypt this is my message and key is ThisIsMyKey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.And("The message is encrypted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 26
+ testRunner.And("Encrypted message is generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+ testRunner.When("I decrypt the Encrypted message using key ThisIsMyKey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+ testRunner.Then("I get this is my message in response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Verify that Encrypt Decrypt functionality is working End to End")]
+        [Xunit.TraitAttribute("FeatureTitle", "VerifyEncryption")]
+        [Xunit.TraitAttribute("Description", "Verify that Encrypt Decrypt functionality is working End to End")]
+        [Xunit.TraitAttribute("Category", "subSuite:keyGen")]
+        [Xunit.TraitAttribute("Category", "e2e-tests")]
+        [Xunit.TraitAttribute("Category", "encrypt")]
+        [Xunit.TraitAttribute("Category", "decrypt")]
+        [Xunit.TraitAttribute("Category", "key-gen")]
+        [Xunit.InlineDataAttribute("30", "Please encrypt me", new string[0])]
+        [Xunit.InlineDataAttribute("100", "This is confidential message", new string[0])]
+        [Xunit.InlineDataAttribute("2000", "This is very long and secret communication. Please Encrypt", new string[0])]
+        public virtual void VerifyThatEncryptDecryptFunctionalityIsWorkingEndToEnd(string keyLength, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "subSuite:keyGen",
+                    "e2e-tests",
+                    "encrypt",
+                    "decrypt",
+                    "key-gen"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("keyLength", keyLength);
+            argumentsOfScenario.Add("message", message);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that Encrypt Decrypt functionality is working End to End", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 33
+ testRunner.When(string.Format("I generate a key of length {0} using KeyGen functionality", keyLength), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
+ testRunner.And(string.Format("Key of length {0} is generated successfully", keyLength), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+ testRunner.And(string.Format("I encrypt {0} with the generated key", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 36
+ testRunner.And("The message is encrypted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 37
+ testRunner.And("Encrypted message is generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 38
+ testRunner.When("I decrypt the Encrypted message using the generated key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
+ testRunner.Then(string.Format("I get {0} in response", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
